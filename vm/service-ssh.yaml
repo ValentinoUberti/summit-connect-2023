@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rhel9-remediation
+  namespace: summit-connect
+spec:
+  allocateLoadBalancerNodePorts: true
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - targetPort: 22
+    port: 22
+  selector:
+    webserver: backend
+  type: LoadBalancer

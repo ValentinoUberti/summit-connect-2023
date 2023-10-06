@@ -1,0 +1,10 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ip-addresspool-summit-connect
+  namespace: metallb-system
+spec:
+  addresses:
+  - 172.25.0.100-172.25.0.105
+  autoAssign: true
+  avoidBuggyIPs: true

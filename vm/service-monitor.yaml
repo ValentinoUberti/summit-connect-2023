@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: prometheus-rhel9-monitor
+  name: prometheus-rhel9-monitor
+  namespace: summit-connect
+spec:
+  endpoints:
+  - interval: 10s
+    port: web
+    scheme: http
+  selector:
+    matchLabels:
+      webserver: backend

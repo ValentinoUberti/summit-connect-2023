@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: disklow
+  namespace: summit-connect
+spec:
+  groups:
+  - name: disklow
+    rules:
+    - alert: LowDiskSpaceDetected
+      annotations:
+        description: Low disk space detected for rhel9 vm
+        message: Low disk space detected for rhel9 vm
+        prefix: Low disk space detected
+        summary: Low disk space detected for rhel9 vm
+      expr: filesys_avail{hostname="rhel9-remediation",instname="/dev/vda4"} <= 10000000
+      labels:
+        application: rhel9-vm
+        severity: critical
